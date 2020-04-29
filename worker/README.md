@@ -11,11 +11,13 @@ Communicates with [GitHub Jobs API](https://jobs.github.com/api) to grab jobs an
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Redis](https://redis.io/) - Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker.
 
 ## Used libraries
 
 - [Cron](https://www.npmjs.com/package/cron) - Cron is a tool that allows you to execute something on a schedule.
 - [node-fetch](https://www.npmjs.com/package/node-fetch) - A light-weight module that brings `window.fetch` to Node.js
+- [redis](https://www.npmjs.com/package/redis) - Redis client for Node.js
 
 ## Used packages
 
