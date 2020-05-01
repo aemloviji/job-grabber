@@ -12,6 +12,8 @@ namespace JobGrabber.Backend
     internal class Startup
     {
         private const string ConfigurationSectionRedis = "Redis";
+        private const string LocalhostCorsPolicy = "_localhostCorsPolicy";
+
 
         public IConfiguration Configuration { get; }
 
@@ -19,6 +21,12 @@ namespace JobGrabber.Backend
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: LocalhostCorsPolicy,
+                                  builder => { builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader(); });
+            });
+
             services.AddControllers();
 
             services.AddSingleton<IRedisClient, RedisClient>();
@@ -36,10 +44,9 @@ namespace JobGrabber.Backend
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(LocalhostCorsPolicy);
 
             app.UseEndpoints(endpoints =>
             {
