@@ -5,14 +5,12 @@ import { promisify } from 'util';
 const redisClient = redis.createClient();
 const setAsync = promisify(redisClient.set).bind(redisClient);
 
-export default async function save(data: any): Promise<unknown> {
-    let result = null;
+export default async function save(data: any) {
     try {
-        result = await setAsync('github', JSON.stringify(data));
+        await setAsync('github', JSON.stringify(data));
     }
     catch (e) {
         console.error('Data not stored in Redis: ', e);
+        throw e;
     }
-
-    return result;
 }

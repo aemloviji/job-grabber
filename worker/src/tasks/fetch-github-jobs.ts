@@ -22,5 +22,5 @@ export default async function fetchGithubJobs(): Promise<void> {
     console.log('got', allJobs.length, 'jobs in total');
 
     const redisResult = await save(allJobs);
-    console.log('storing in redis:', redisResult);
+    console.log("Jobs saved in storage.");
 }
