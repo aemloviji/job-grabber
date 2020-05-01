@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>d98818d3-1b62-401d-8f40-43542c8146b1</UserSecretsId>
+    <AssemblyName>JobGrabber.Backend</AssemblyName>
+    <RootNamespace>JobGrabber.Backend</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.1.30" />
+  </ItemGroup>
+
+
+</Project>
