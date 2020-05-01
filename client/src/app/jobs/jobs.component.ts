@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Job } from '../models/job';
-
-const JOBS: Job[] = [
-  { id: '', title: 'PO', company: 'Microsoft' },
-  { id: '', title: 'Scrum Master', company: 'Google' },
-  { id: '', title: 'Delivery Manager', company: 'Apple' },
-  { id: '', title: 'SQA', company: 'Facebook' },
-  { id: '', title: 'Software Engineer', company: 'Github' }
-];
+import { JobService } from '../services/job.service';
 
 interface ComponentProps {
   isLoading: boolean;
@@ -26,11 +19,17 @@ export class JobsComponent implements OnInit {
   };
 
   displayedColumns: string[] = ['#', 'title', 'company'];
-  dataSource = JOBS;
+  dataSource: Job[] = [];
+  errorMessage = '';
+  isLoading = true;
 
-  constructor() { }
+  constructor(private jobService: JobService) { }
 
   ngOnInit(): void {
-
+    this.jobService.list()
+      .subscribe(
+        s => this.dataSource = s,
+        e => this.errorMessage = e,
+        () => this.isLoading = false);
   }
 }
