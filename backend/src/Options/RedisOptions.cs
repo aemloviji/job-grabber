@@ -8,8 +8,8 @@ namespace JobGrabber.Backend.Options
 
         public int Port { get; set; }
 
-        public int RetryConnectCount { get; set; } = 2;
+        public int ConnectRetry { get; set; } = 2;
 
-        public string Configuration => $"{Host}:{Port}, connectRetry={RetryConnectCount}";
+        public string Configuration => $"{Host}:{Port}, connectRetry={ConnectRetry}";
     }
 }

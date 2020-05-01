@@ -9,5 +9,7 @@ namespace JobGrabber.Backend.Models
         public string Title { get; set; }
 
         public string Company { get; set; }
+
+        public string CompanyUrl { get; set; }
     }
 }

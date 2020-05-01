@@ -1,3 +1,4 @@
+using JobGrabber.Backend.Abstraction;
 using JobGrabber.Backend.Options;
 using JobGrabber.Backend.Services;
 using Microsoft.AspNetCore.Builder;
@@ -20,13 +21,14 @@ namespace JobGrabber.Backend
         {
             services.AddControllers();
 
-            services.AddSingleton<RedisService>();
+            services.AddSingleton<IRedisClient, RedisClient>();
+            services.AddSingleton<IJobService, JobService>();
 
             services.Configure<RedisOptions>(Configuration.GetSection(ConfigurationSectionRedis));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RedisService redisService)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRedisClient redisClient)
         {
             if (env.IsDevelopment())
             {
@@ -44,7 +46,7 @@ namespace JobGrabber.Backend
                 endpoints.MapControllers();
             });
 
-            redisService.Connect();
+            redisClient.Connect();
         }
     }
 }

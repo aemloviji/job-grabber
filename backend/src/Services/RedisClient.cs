@@ -1,4 +1,5 @@
-﻿using JobGrabber.Backend.Options;
+﻿using JobGrabber.Backend.Abstraction;
+using JobGrabber.Backend.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JobGrabber.Backend.Services
 {
-    public sealed class RedisService
+    public sealed class RedisClient : IRedisClient
     {
         private readonly ILogger _logger;
         private readonly RedisOptions _options;
@@ -14,11 +15,8 @@ namespace JobGrabber.Backend.Services
 
         private IDatabaseAsync Database => _redis.GetDatabase();
 
-        public RedisService(ILogger<RedisService> logger, IOptions<RedisOptions> options)
-        {
-            _logger = logger;
-            _options = options.Value;
-        }
+        public RedisClient(ILogger<RedisClient> logger, IOptions<RedisOptions> options) =>
+            (_logger, _options) = (logger, options.Value);
 
         public void Connect()
         {
