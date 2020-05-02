@@ -13,23 +13,16 @@ interface ComponentProps {
   styleUrls: ['./jobs.component.scss']
 })
 export class JobsComponent implements OnInit {
-  props: ComponentProps = {
-    isLoading: false,
-    errorMessage: ''
-  };
-
-  displayedColumns: string[] = ['#', 'title', 'company'];
-  dataSource: Job[] = [];
-  errorMessage = '';
-  isLoading = true;
+  props: ComponentProps = { isLoading: false, errorMessage: '' };
+  jobs: Job[] = [];
 
   constructor(private jobService: JobService) { }
 
   ngOnInit(): void {
     this.jobService.list()
       .subscribe(
-        s => this.dataSource = s,
-        e => this.errorMessage = e,
-        () => this.isLoading = false);
+        v => this.jobs = v,
+        e => this.props.errorMessage = e,
+        () => this.props.isLoading = false);
   }
 }

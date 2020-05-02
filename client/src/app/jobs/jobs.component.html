@@ -5,26 +5,20 @@
     {{props.errorMessage}}
 </section>
 <section *ngIf="!props.isLoading && !props.errorMessage">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- # Column -->
-        <ng-container matColumnDef="#">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-
-        <!-- Title Column -->
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Title </th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-        </ng-container>
-
-        <!-- Company Column -->
-        <ng-container matColumnDef="company">
-            <th mat-header-cell *matHeaderCellDef> Company </th>
-            <td mat-cell *matCellDef="let element"> {{element.company}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <mat-card *ngFor="let job of jobs; last as last">
+        <mat-card-header>
+            <div mat-card-avatar class="job-card-header-image"></div>
+            <mat-card-title>{{job.title}}</mat-card-title>
+            <mat-card-subtitle>{{job.company}}</mat-card-subtitle>
+            <mat-card-subtitle>{{job.location}}</mat-card-subtitle>
+            <mat-card-subtitle>{{job.createdAt | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            {{job.description}}
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-stroked-button color="primary" href="{{job.url}}" target="_blank">Apply</a>
+        </mat-card-actions>
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+    </mat-card>
 </section>

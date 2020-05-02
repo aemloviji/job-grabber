@@ -45,9 +45,12 @@ export class JobService {
     return {
       id: data.id,
       title: data.title,
-      company: data.company
+      company: data.company,
+      companyLogo: data.companyLogo,
+      location: data.location,
+      description: data.description,
+      createdAt: data.createdAt,
+      url: data.url
     };
   }
 }
-
-
