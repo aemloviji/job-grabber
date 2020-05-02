@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text.Json;
 
-namespace JobGrabber.Backend.JsonPropertyNamePolicies
+namespace JobGrabber.Backend.JsonCustomizations
 {
     public class SnakeCaseNamingPolicy : JsonNamingPolicy
     {
