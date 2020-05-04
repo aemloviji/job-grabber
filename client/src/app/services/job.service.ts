@@ -8,12 +8,12 @@ import { Job } from '../models/job';
   providedIn: 'root'
 })
 export class JobService {
-  private baseUrl = 'https://localhost:5001';
+  private baseUrl = 'https://localhost:5001/api';
   constructor(private httpClient: HttpClient) { }
 
   list(): Observable<Job[]> {
     return this.httpClient
-      .get(`https://localhost:5001/jobs`)
+      .get(`${this.baseUrl}/jobs`)
       .pipe(
         map(res => (res as any[]).map(this.toJob)),
         catchError(this.handleError));
