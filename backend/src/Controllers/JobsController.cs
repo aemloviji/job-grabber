@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace JobGrabber.Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class JobsController : ControllerBase
     {
         private readonly IJobService _jobService;
