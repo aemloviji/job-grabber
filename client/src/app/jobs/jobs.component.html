@@ -7,16 +7,15 @@
 <section *ngIf="!props.isLoading && !props.errorMessage">
     <mat-card *ngFor="let job of jobs; last as last">
         <mat-card-header>
-            <div mat-card-avatar class="job-card-header-image"></div>
+            <img mat-card-avatar class="job-card-header-image" src={{job.companyLogo}}>
             <mat-card-title>{{job.title}}</mat-card-title>
-            <mat-card-subtitle>{{job.company}}</mat-card-subtitle>
-            <mat-card-subtitle>{{job.location}}</mat-card-subtitle>
-            <mat-card-subtitle>{{job.createdAt | date:'dd/MM/yyyy'}}</mat-card-subtitle>
+            <mat-card-subtitle>Company: {{job.company}}</mat-card-subtitle>
+            <mat-card-subtitle>Location: {{job.location}}</mat-card-subtitle>
+            <mat-card-subtitle>Created At: {{job.createdAt | date:'dd/MM/yyyy'}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
-            {{job.description}}
-        </mat-card-content>
+        <mat-card-content [innerHtml]=job.description.slice(0,500)> </mat-card-content>
         <mat-card-actions>
+            <button mat-stroked-button color="accent" (click)="readMore(job.id)">Read more</button>
             <a mat-stroked-button color="primary" href="{{job.url}}" target="_blank">Apply</a>
         </mat-card-actions>
         <mat-divider [inset]="true" *ngIf="!last"></mat-divider>

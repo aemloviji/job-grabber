@@ -1,0 +1,7 @@
+<img mat-card-avatar src={{data.companyLogo}}>
+<h1 mat-dialog-title>{{data.title}} - {{data.company}} - {{data.location}}</h1>
+<div mat-dialog-content [innerHTML]="data.description"></div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+    <a mat-button cdkFocusInitial href="{{data.url}}" target="_blank">Apply</a>
+</div>

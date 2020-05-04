@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { MaterialUIModule } from './material-ui.module';
+import { JobDetailsDialogComponent } from './job-details-dialog/job-details-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobsComponent
+    JobsComponent,
+    JobDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
